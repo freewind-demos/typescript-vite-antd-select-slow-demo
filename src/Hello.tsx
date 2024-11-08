@@ -6,7 +6,7 @@ import './Hello.pcss';
 type Props = {};
 
 interface OptionType {
-    label: React.ReactNode;
+    label: string;
     value: number;
     options?: OptionType[];
 }
@@ -17,38 +17,16 @@ export const Hello: FC<Props> = ({ }) => {
 
     function generateOptions(count: number): OptionType[] {
         return new Array(count).fill(1).map((_, index) => {
-            const groupLabel = (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Button type="link" size="small">📁</Button>
-                    <span>标题 {index}</span>
-                </div>
-            );
-
-            const subItemLabel = (subIndex: number) => (
-                <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center'
-                }}>
-                    <Space>
-                        <Button size="small">👀</Button>
-                        <Button type="primary" size="small">✏️</Button>
-                    </Space>
-                    <span style={{ marginLeft: 8 }}>
-                        选项{subIndex}-{index}
-                    </span>
-                </div>
-            );
-
             return {
-                label: groupLabel,
+                label: `标题 ${index}`,
                 value: 100000 + index,
                 options: [
                     { 
-                        label: subItemLabel(1),
+                        label: `选项1-${index}`,
                         value: 1000000 + index 
                     },
                     { 
-                        label: subItemLabel(2),
+                        label: `选项2-${index}`,
                         value: 10000000 + index 
                     },
                 ]
@@ -62,7 +40,7 @@ export const Hello: FC<Props> = ({ }) => {
                 <h3>使用popupMatchSelectWidth=true（性能好）：</h3>
                 <Select<number[], OptionType>
                     style={{ width: 300 }}
-                    options={generateOptions(400)}
+                    options={generateOptions(10000)}
                     popupMatchSelectWidth
                 />
             </div>
@@ -71,7 +49,7 @@ export const Hello: FC<Props> = ({ }) => {
                 <h3>使用 popupMatchSelectWidth=false（性能差）：</h3>
                 <Select<number[], OptionType>
                     style={{ width: 300 }}
-                    options={generateOptions(400)}
+                    options={generateOptions(10000)}
                     popupMatchSelectWidth={false}
                 />
             </div>
