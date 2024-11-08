@@ -1,7 +1,7 @@
-TypeScript Vite Antd Tree-Select Huge Data Demo
+TypeScript Vite Antd Select Slow Demo
 ===========================
 
-当treeData中节数量上万时，打开dropdown就会非常慢
+当数据量稍大一点时，把 popupMatchSelectWidth=false 就会非常卡
 
 ```
 npm install
